@@ -1,4 +1,46 @@
 
+.primary-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    a{
+        color: #fff;
+    }
+    .top-bar{
+        display: flex;
+        align-items: center;
+        .site-name{
+            white-space: nowrap;
+            >span{
+                display: inline-block;
+                padding:.5em 1em;
+                line-height: 1;
+                background: #fff;
+                color: #000;
+                border-radius: 1em;
+                vertical-align: middle;
+            }
+        }
+        .nav-links{
+            flex-grow: 1;
+            list-style: none;
+            display: flex;
+            margin: 0 0 0 1em;
+            padding: 0;
+            line-height: 1;
+            a{
+                padding:.5em 1em;
+            }
+        }
+    }
+}
+
 main{
     min-height: 100vh;
     padding-top: 80px;
@@ -8,3 +50,4 @@ h1{
     font-size: 1.5rem;
     margin-bottom: 1em;;
 }
+

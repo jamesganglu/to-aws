@@ -1,0 +1,65 @@
+@mixin hamburger($w:30px, $h:25px, $thick:5px, $color:#fff, $round:3px){
+    width: $w;
+    height: $h;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+
+   appearance:         none;
+   background:none;
+   border:none;
+    span.navbar-toggler-bar{
+      display: block;
+      position: absolute;
+      height: $thick;
+      width: 100%;
+      background: $color;
+      border-radius: $round;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition:.25s ease-in-out;
+    }
+
+    span.navbar-toggler-bar:nth-child(1) {
+      top: 0px;
+    }
+
+    span.navbar-toggler-bar:nth-child(2), span.navbar-toggler-bar:nth-child(3) {
+      top: $h/2 - $thick/2;
+    }
+
+    span.navbar-toggler-bar:nth-child(4) {
+      top: $h - $thick;
+    }
+
+    &[aria-expanded="true"] span.navbar-toggler-bar:nth-child(1) {
+      top: $h/2 - $thick/2;
+      width: 0%;
+      left: 50%;
+    }
+
+    &[aria-expanded="true"]  span.navbar-toggler-bar:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    &[aria-expanded="true"]  span.navbar-toggler-bar:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    &[aria-expanded="true"] span.navbar-toggler-bar:nth-child(4) {
+      top: $h/2 - $thick/2;
+      width: 0%;
+      left: 50%;
+    }
+}
+
+@mixin fa-icon{
+  display: inline-block;
+  font-family: "Font Awesome 5 Free"; 
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 900; 
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}

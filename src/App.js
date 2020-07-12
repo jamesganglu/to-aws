@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/general.scss';
 
 import Navbar from './components/NavBar';
@@ -11,6 +10,7 @@ import Articles from './containers/Articles';
 import Article from './containers/Article';
 import Login from './containers/Login';
 import Register from './containers/Register';
+import Page404 from './containers/Page404';
 
 
 function App() {
@@ -21,12 +21,14 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/posts" component={Articles} />
-            <Route exact path="/post/:id" component={Article} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <Route path="/posts" component={Articles} />
+            <Route path="/post/:id" component={Article} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="*" component={Page404} />
           </Switch>
         </main>
+        <footer></footer>
       </Router>
     </div>
   );

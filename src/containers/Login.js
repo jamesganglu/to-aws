@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getPosts} from '../actions/index';
+import {login} from '../actions/index';
 import { Link } from 'react-router-dom';
 
 import { Formik } from 'formik';
@@ -15,13 +15,17 @@ class Home extends React.Component {
 	onSubmitForm = (e) => {
 		e.preventDefault();
 		console.log(this.state);
+
+		this.props.login(true);
 	}
 
 	onInputChange = (e) =>{
 		this.setState({
 			[e.target.id]:e.target.value
 		})
-	} 
+	}
+
+
 
 
   render(){
@@ -33,8 +37,8 @@ class Home extends React.Component {
 						username:'',
 						password:''
 					}
-				}
-
+        }
+        
 				validationSchema = {
 					Yup.object({
 						username:Yup.string().required('please input user name'),
@@ -87,7 +91,7 @@ const mapStateTopProps = state => {
 	}
 }
 const mapDispatchToProps = {
-	getPosts
+	login
 }
 
 export default connect(mapStateTopProps, mapDispatchToProps)(Home);

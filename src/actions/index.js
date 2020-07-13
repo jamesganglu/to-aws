@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { resources } from '../config';
 
-export const toggleLogin = (isLogin)=>{
+export const login = (isLogin)=>{
   return {
     type:'LOGIN_STATE',
     payload: isLogin

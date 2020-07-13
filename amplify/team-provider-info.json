@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-toaws-dev-150845-authRole",
+            "UnauthRoleArn": "arn:aws:iam::798142979253:role/amplify-toaws-dev-150845-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::798142979253:role/amplify-toaws-dev-150845-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-toaws-dev-150845-deployment",
+            "UnauthRoleName": "amplify-toaws-dev-150845-unauthRole",
+            "StackName": "amplify-toaws-dev-150845",
+            "StackId": "arn:aws:cloudformation:us-east-1:798142979253:stack/amplify-toaws-dev-150845/1c8060c0-c473-11ea-8d40-0e1b8dfea4f7",
+            "AmplifyAppId": "d2va6ezobbzwwc"
+        },
+        "categories": {
+            "auth": {
+                "toaws15c75fb3": {}
+            }
+        }
+    }
+}

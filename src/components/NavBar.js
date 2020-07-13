@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import {toggleLogin} from '../actions/index';
+import { NavLink } from 'react-router-dom';
+
+import {login} from '../actions/index';
+import { Fragment } from 'react';
+
 class Navbar extends Component {
    body = document.querySelector('body');
    menuButton;
@@ -24,14 +27,16 @@ class Navbar extends Component {
       this.menuButton.setAttribute('aria-expanded',true);
   }
 
+  logout = () =>{
+    this.props.login(false);
+  }
   componentDidMount(){
     this.menuButton = document.querySelector('#primary-nav-menu');
   }
 
   render() {
-    console.log(this.menuButton)
     return (
-      <>
+      <Fragment>
         <nav className="primary-nav">
           <div className="container">
             <div className="top-bar">
@@ -48,7 +53,15 @@ class Navbar extends Component {
               </div>
 
               <div className="infos">
-                <NavLink to="/login">login</NavLink> <span className="greeting">Hello, James</span>
+               
+                {!this.props.user.isLoing && (<NavLink to="/login">login</NavLink>)}
+                {this.props.user.isLoing && (
+                  <>
+                    <span className="greeting">Hello, James</span>
+                    <button className="btn btn-primary" onClick={()=>this.logout()}>Logout</button>
+                  </>
+                )}
+
                 <button id="primary-nav-menu" aria-expanded="false" onClick={()=>this.toggleMenu()}>
                   <span className="navbar-toggler-bar"></span>
                   <span className="navbar-toggler-bar"></span>
@@ -59,7 +72,7 @@ class Navbar extends Component {
             </div>
           </div>
         </nav>
-      </>
+      </Fragment>
     )
   }
 }
@@ -71,7 +84,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  toggleLogin
+  login
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar);

@@ -1,15 +1,34 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
+import { Auth } from 'aws-amplify';
 import * as Yup from 'yup';
+import {username} from '../actions/index';
+import Helper from '../helper/helper'
 
 class Home extends React.Component {
-	
-	/* onInputChange = (e) =>{
-		this.setState({
-			[e.target.id]:e.target.value
-		})
-	}  */
+  
+  state = {
+    formMessage:''
+  }
+
+  async registUser(values){
+    try{
+      const user = await Auth.signUp({
+        username:values.username,
+        password:values.password,
+        attributes:{
+          email:values.email
+        }
+      })
+      this.props.username(user.username);
+      this.props.history.push('/register-thankyou')
+    }catch(er){
+      this.setState ({formMessage:er.message});
+      Helper.showMessagePopup('#form-message');
+    }
+  }
+
   render(){
 		return (
 			<Fragment>
@@ -42,7 +61,7 @@ class Home extends React.Component {
 						}
 
 						onSubmit = {(values)=>{
-							setTimeout(()=>{console.log(values)},400)
+              				this.registUser(values);
 						}}
 					>
 						{(formik)=>(
@@ -101,10 +120,16 @@ class Home extends React.Component {
 						)}
 					</Formik>
 				</div>
+
+        <div className="message-box" id="form-message">
+          <div className="message-body">
+            <button className="close-popup" onClick={()=>Helper.closeMessagePopup()}>&times;</button>
+            <p>{this.state.formMessage}</p>
+          </div>
+        </div>
 			</Fragment>
 		)
 	}
-
 }
 
 const mapStateTopProps = state => {
@@ -113,6 +138,7 @@ const mapStateTopProps = state => {
 	}
 }
 const mapDispatchToProps = {
+  username
 }
 
 export default connect(mapStateTopProps, mapDispatchToProps)(Home);

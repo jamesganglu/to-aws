@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { Auth } from 'aws-amplify';
 import {login} from '../actions/index';
 import { Fragment } from 'react';
 
 class Navbar extends Component {
-   body = document.querySelector('body');
+   body;
    menuButton;
 
   toggleMenu=()=>{
@@ -18,19 +19,24 @@ class Navbar extends Component {
   }
 
   closeMenu = () => {
-      this.body.classList.remove('menu-shown');
-      this.menuButton.setAttribute('aria-expanded',false);
+    this.body.classList.remove('menu-shown');
+    this.menuButton.setAttribute('aria-expanded',false);
   }
 
   openMenu = () => {
-      this.body.classList +=' menu-shown';
-      this.menuButton.setAttribute('aria-expanded',true);
+    this.body.classList +=' menu-shown';
+    this.menuButton.setAttribute('aria-expanded',true);
   }
 
-  logout = () =>{
-    this.props.login(false);
+  async logout(){
+    try {
+      await Auth.signOut();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
   }
   componentDidMount(){
+    this.body = document.querySelector('body');
     this.menuButton = document.querySelector('#primary-nav-menu');
   }
 

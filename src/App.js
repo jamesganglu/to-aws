@@ -12,6 +12,7 @@ import Articles from './containers/Articles';
 import Article from './containers/Article';
 import Login from './containers/Login';
 import Register from './containers/Register';
+import RegisterThankyou from './containers/RegisterThankyou';
 import Page404 from './containers/Page404';
 
 Amplify.configure(awsconfig);
@@ -25,7 +26,6 @@ class App extends React.Component{
     }catch(err){
       console.log(err);
     }
-    
   }
   render(){
     return (
@@ -39,6 +39,8 @@ class App extends React.Component{
               <Route path="/post/:id" component={Article} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              
+              <Route path="/register-thankyou" component={RegisterThankyou} />
               <Route path="*" component={Page404} />
             </Switch>
           </main>

@@ -8,6 +8,13 @@ export const login = (isLogin)=>{
   }
 }
 
+export const username = (username)=>{
+  return {
+    type:'USERNAME',
+    payload: username
+  }
+}
+
 export const getPosts = () => dispatch => {
   axios.get(resources.POST_URL).then(
     res=>{

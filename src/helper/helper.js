@@ -1,6 +1,9 @@
 class Helper{
+  body
+  constructor(){
+    this.body = document.querySelector('body');
+  }
   
-  body = document.querySelector('body');
 
   showMessagePopup=(id)=>{
     this.body.classList +=' popup-shown';
@@ -19,4 +22,4 @@ class Helper{
   }
 }
 
-export default new Helper;
+export default new Helper();
